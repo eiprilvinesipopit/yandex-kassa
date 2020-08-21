@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dbzer0/yandex-kassa/api"
-	"github.com/dbzer0/yandex-kassa/api/currency"
+	"github.com/eiprilvinesipopit/yandex-kassa/api"
+	"github.com/eiprilvinesipopit/yandex-kassa/api/currency"
 	"github.com/google/uuid"
 )
 

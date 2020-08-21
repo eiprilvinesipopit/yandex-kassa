@@ -6,9 +6,9 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/dbzer0/yandex-kassa/api/client"
-	"github.com/dbzer0/yandex-kassa/api/info"
-	"github.com/dbzer0/yandex-kassa/api/payment"
+	"github.com/eiprilvinesipopit/yandex-kassa/api/client"
+	"github.com/eiprilvinesipopit/yandex-kassa/api/info"
+	"github.com/eiprilvinesipopit/yandex-kassa/api/payment"
 )
 
 const apiURL = "https://payment.yandex.net/api/v3"

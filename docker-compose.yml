@@ -12,8 +12,8 @@ services:
         - no_proxy
     volumes:
         - /etc/localtime:/etc/localtime:ro
-        - .:/go/src/github.com/dbzer0/yandex-kassa
-    working_dir: /go/src/github.com/dbzer0/yandex-kassa
+        - .:/go/src/github.com/eiprilvinesipopit/yandex-kassa
+    working_dir: /go/src/github.com/eiprilvinesipopit/yandex-kassa
     environment:
       - UID=1000
       - GID=1000
