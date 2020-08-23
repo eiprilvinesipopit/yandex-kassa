@@ -92,3 +92,9 @@ func (p *NewPayment) WithDescription(desc string) *NewPayment {
 	p.Description = &desc
 	return p
 }
+
+func (p *NewPayment) WithSavePaymentMethod() *NewPayment {
+	savePaymentMethod := true
+	p.SavePaymentMethod = &savePaymentMethod
+	return p
+}
