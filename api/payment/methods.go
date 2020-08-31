@@ -98,3 +98,8 @@ func (p *NewPayment) WithSavePaymentMethod() *NewPayment {
 	p.SavePaymentMethod = &savePaymentMethod
 	return p
 }
+
+func (p *NewPayment) WithPaymentMethodID(paymentMethodID string) *NewPayment {
+	p.PaymentMethodID = &paymentMethodID
+	return p
+}

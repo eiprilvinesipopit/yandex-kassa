@@ -13,6 +13,7 @@ type NewPayment struct {
 	Confirmation      *Confirmation     `json:"confirmation,omitempty" bson:"confirmation,omitempty"`               // данные, необходимые для инициации выбранного сценария подтверждения платежа пользователем
 	Capture           *bool             `json:"capture,omitempty" bson:"capture,omitempty"`                         // автоматический прием  поступившего платежа
 	SavePaymentMethod *bool             `json:"save_payment_method,omitempty" bson:"save_payment_method,omitempty"` // автоплатеж
+	PaymentMethodID   *string           `json:"payment_method_id,omitempty" bson:"payment_method_id,omitempty"`     // идентификаторв автоплатежа
 }
 
 type Recipient struct {
