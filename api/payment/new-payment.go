@@ -14,6 +14,7 @@ type NewPayment struct {
 	Capture           *bool             `json:"capture,omitempty" bson:"capture,omitempty"`                         // автоматический прием  поступившего платежа
 	SavePaymentMethod *bool             `json:"save_payment_method,omitempty" bson:"save_payment_method,omitempty"` // автоплатеж
 	PaymentMethodID   *string           `json:"payment_method_id,omitempty" bson:"payment_method_id,omitempty"`     // идентификаторв автоплатежа
+	MetaData          map[string]string `json:"metadata,omitempty" bson:"metadata,omitempty"`                       // доп. данные
 }
 
 type Recipient struct {

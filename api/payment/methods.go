@@ -103,3 +103,8 @@ func (p *NewPayment) WithPaymentMethodID(paymentMethodID string) *NewPayment {
 	p.PaymentMethodID = &paymentMethodID
 	return p
 }
+
+func (p *NewPayment) WithMetaData(meta map[string]string) *NewPayment {
+	p.MetaData = meta
+	return p
+}
