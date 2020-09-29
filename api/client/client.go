@@ -68,6 +68,18 @@ func (c *APIClient) Find(ctx context.Context, paymentID string) (io.ReadCloser, 
 	return response.Body, nil
 }
 
+func (c *APIClient) GetPayments(ctx context.Context, status string) (io.ReadCloser, error) {
+	response, err := c.get(ctx, fmt.Sprintf("payments?status=%s", status))
+	if err != nil {
+		return nil, err
+	}
+	if response.StatusCode != http.StatusOK {
+		defer response.Body.Close()
+		return nil, c.errorWrap(response.Body)
+	}
+	return response.Body, nil
+}
+
 func (c *APIClient) Cancel(ctx context.Context, idempKey, paymentID string) (io.ReadCloser, error) {
 	response, err := c.post(ctx, fmt.Sprintf("payments/%s/cancel", paymentID), idempKey, []byte("{}"))
 	if err != nil {

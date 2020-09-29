@@ -83,6 +83,26 @@ func (k *Kassa) Find(ctx context.Context, paymentID string) (*info.Payment, erro
 	return p, nil
 }
 
+// GetPayments get all payments by status
+func (k *Kassa) GetPayments(ctx context.Context, status string) (*info.Payments, error) {
+	reply, err := k.client.GetPayments(ctx, status)
+	if err != nil {
+		return nil, err
+	}
+	defer reply.Close()
+
+	payments := &info.Payments{}
+	if err := json.NewDecoder(reply).Decode(&payments); err != nil {
+		return nil, err
+	}
+
+	if payments != nil && payments.Type == typeError && payments.Description != nil {
+		return payments, errors.New(*payments.Description)
+	}
+
+	return payments, nil
+}
+
 // Capture подтверждает вашу готовность принять платеж.
 func (k *Kassa) Capture(ctx context.Context, idempKey, paymentID, value, currency string) (*info.Payment, error) {
 	p := &info.Payment{

@@ -4,6 +4,15 @@ import (
 	"github.com/eiprilvinesipopit/yandex-kassa/api/client"
 )
 
+type Payments struct {
+	Type       string     `json:"type" bson:"type"`
+	Items      []*Payment `json:"items" bson:"items"`
+	NextCursor *string    `json:"next_cursor,omitempty" bson:"next_cursor,omitempty"`
+
+	Description *string `json:"description,omitempty" bson:"description,omitempty"` // описание транзакции (не более 128 символов), которое вы увидите в личном кабинете Яндекс.Кассы
+	Code        *string `json:"code,omitempty" bson:"code,omitempty"`               // содержит ID ошибки, например invalid_request
+}
+
 type Payment struct {
 	APIClient            *client.APIClient     `json:"-" bson:"-"`
 	ID                   string                `json:"id" bson:"id"`                                                           // идентификатор платежа в Яндекс.Кассе
@@ -21,6 +30,7 @@ type Payment struct {
 	Refundable           *bool                 `json:"refundable,omitempty" bson:"refundable,omitempty"`                       // возможность провести возврат по API
 	Paid                 *bool                 `json:"paid,omitempty" bson:"paid,omitempty"`                                   // признак оплаты заказа
 	Test                 *bool                 `json:"test,omitempty" bson:"test,omitempty"`                                   // признак тестовой операции
+	MetaData             map[string]string     `json:"metadata,omitempty" bson:"metadata,omitempty"`                           // доп. данные
 
 	Code      *string `json:"code,omitempty" bson:"code,omitempty"`           // содержит ID ошибки, например invalid_request
 	Parameter *string `json:"parameter,omitempty" bson:"parameter,omitempty"` // содержит параметр в котором произошла ошибка, например: payment_id
