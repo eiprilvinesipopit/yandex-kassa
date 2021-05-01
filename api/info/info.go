@@ -4,6 +4,13 @@ import (
 	"github.com/eiprilvinesipopit/yandex-kassa/api/client"
 )
 
+const (
+	PaymentStatusPending           = "pending"
+	PaymentStatusWaitingForCapture = "waiting_for_capture"
+	PaymentStatusSucceeded         = "succeeded"
+	PaymentStatusCanceled          = "canceled"
+)
+
 type Payments struct {
 	Type       string     `json:"type" bson:"type"`
 	Items      []*Payment `json:"items" bson:"items"`
