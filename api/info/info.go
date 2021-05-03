@@ -9,6 +9,8 @@ const (
 	PaymentStatusWaitingForCapture = "waiting_for_capture"
 	PaymentStatusSucceeded         = "succeeded"
 	PaymentStatusCanceled          = "canceled"
+
+	PaymentCancelReasonPermissionRevoked = "permission_revoked"
 )
 
 type Payments struct {
@@ -38,6 +40,7 @@ type Payment struct {
 	Paid                 *bool                 `json:"paid,omitempty" bson:"paid,omitempty"`                                   // признак оплаты заказа
 	Test                 *bool                 `json:"test,omitempty" bson:"test,omitempty"`                                   // признак тестовой операции
 	MetaData             map[string]string     `json:"metadata,omitempty" bson:"metadata,omitempty"`                           // доп. данные
+	CancellationDetails  *CancellationDetails  `json:"cancellation_details,omitempty" bson:"cancellation_details,omitempty"`   // Commentary to the canceled status: who and why canceled the payment
 
 	Code      *string `json:"code,omitempty" bson:"code,omitempty"`           // содержит ID ошибки, например invalid_request
 	Parameter *string `json:"parameter,omitempty" bson:"parameter,omitempty"` // содержит параметр в котором произошла ошибка, например: payment_id
@@ -124,6 +127,11 @@ type AuthorizationDetails struct {
 type RefundedAmount struct {
 	Value    string `json:"value" bson:"value"`       // сумма в выбранной валюте
 	Currency string `json:"currency" bson:"currency"` // код валюты в формате ISO-4217
+}
+
+type CancellationDetails struct {
+	Party  string `json:"party" bson:"party"`   // Initiators of a payment cancellation. Can be: merchant, yoo_money, payment_network
+	Reason string `json:"reason" bson:"reason"` // Reason behind the cancelation
 }
 
 // ConfirmationURL возвращает URL (если он есть), на который вернется
